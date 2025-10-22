@@ -1,0 +1,6 @@
+<link rel="stylesheet" type="text/css" bref="/css/style.css" />
+<div style="width: 800px; height: 800px; background-color: red">
+    <div class="childbox">자식 1</div>
+    <div class="childbox">자식 2</div>
+    <div class="childbox">자식 3</div>
+</div>

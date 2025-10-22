@@ -1,0 +1,34 @@
+.box {
+  width: 100px;
+  height: 100px;
+  background-color: blue;
+  border-radius: 5px 10px 15px 20px;
+  margin: 40px;
+  text-align: center;
+  padding-top: 20px;
+  color: white;
+  /* ~px 4개의 모서리 전체, 동일 값, 20px/40px; x, y값으로 적용, */
+
+  transition-property: border-radius, background-color;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-in-out;
+}
+
+.clicked {
+  border-radius: 16px;
+  background-color: pink;
+}
+
+.box-btn {
+  border: 0;
+  width: 300px;
+  height: 120px;
+  border-radius: 24px;
+  box-shadow: 2px 4px 8px hsl(297, 100%, 73%);
+  margin: 16px;
+}
+
+.cat_img {
+  display: block;
+  width: 200px;
+}

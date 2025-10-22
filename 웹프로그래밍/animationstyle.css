@@ -1,0 +1,49 @@
+.box {
+  width: 200px;
+  height: 200px;
+  background-color: brown;
+  animation-name: move;
+  animation-duration: 1.5s;
+  animation-iteration-count: 3;
+  animation-direction: alternate;
+  animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(1, -0.03, 0.53, 0.97);
+  animation-delay: 3s;
+
+  position: absolute;
+}
+
+@keyframes move {
+  0% {
+    top: 0px;
+    left: 0px;
+  }
+  30% {
+    top: 300px;
+    left: 100px;
+    width: 400px;
+    background-color: blue;
+  }
+  50% {
+    top: 300px;
+    left: 100px;
+    width: 400px;
+    background-color: yellow;
+  }
+  100% {
+    top: 300px;
+    left: 500px;
+    width: 100px;
+    background-color: red;
+  }
+}
+from {
+  margin-left: 0px;
+  margin-top: 0px;
+}
+
+to {
+  margin-left: 300px;
+  margin-top: 100px;
+  width: 400px;
+}
