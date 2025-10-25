@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Call of Duty Intro</title>
+
+    <link
+      rel="preload"
+      as="image"
+      href="asset/Webprograming_middlevideo_firstpage.png"
+    />
+    <link
+      rel="preload"
+      as="image"
+      href="asset/Webprograming_middlevideo_NAME.png"
+    />
+    <link
+      rel="preload"
+      as="image"
+      href="asset/Webprograming_middlevideo_press.png"
+    />
+    <link
+      rel="preload"
+      as="image"
+      href="asset/Webprograming_middlevideo_main.png"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="stage">
+      <!-- 현재 배경 -->
+      <img
+        id="intel"
+        class="bg bg-current"
+        src="asset/Webprograming_middlevideo_firstpage.png"
+        alt=""
+        decoding="async"
+        fetchpriority="high"
+      />
+
+      <!-- 로고 -->
+      <div class="logo-wrap">
+        <img
+          src="asset/Webprograming_middlevideo_NAME.png"
+          alt="Call of Duty logo"
+          class="logo"
+        />
+      </div>
+
+      <!-- 다음 화면(초기 숨김) -->
+      <div class="bg bg-next" aria-hidden="true"></div>
+
+      <img
+        class="battle-info"
+        src="asset/Webprograming_middlevideo_text.png"
+        alt="About the game text"
+      />
+
+      <!-- 로고 + PRESS START -->
+      <img
+        class="press"
+        src="asset/Webprograming_middlevideo_press.png"
+        alt="PRESS START"
+      />
+
+      <!-- 어둡게 오버레이 -->
+      <div class="fade" aria-hidden="true"></div>
+    </main>
+
+    <script>
+      // 로드 표시
+      const intel = document.getElementById("intel");
+      if (intel.complete) document.body.classList.add("loaded");
+      else
+        intel.addEventListener("load", () =>
+          document.body.classList.add("loaded")
+        );
+
+      // 클릭 → 즉시 어둡게 → 1초 뒤 다음 화면
+      const stage = document.querySelector(".stage");
+      const press = document.querySelector(".press");
+      press.addEventListener("click", () => {
+        // ① 즉시 어둡게
+        stage.classList.add("dim-now"); // 바로 검게
+        // ② 1초 뒤에 다음 화면 보이기
+        setTimeout(() => {
+          stage.classList.add("show-next");
+          // 전환 끝나면 UI 숨김
+          document.querySelector(".logo-wrap").style.display = "none";
+          press.style.display = "none";
+          // 어둡게는 살짝 유지했다가 자연스레 사라지게 놔둠(transition)
+          stage.classList.remove("dim-now");
+        }, 500);
+      });
+    </script>
+  </body>
+</html>
