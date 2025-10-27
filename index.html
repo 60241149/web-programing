@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Call of Duty Intro</title>
 
+    <!-- 프리로드 -->
     <link
       rel="preload"
       as="image"
@@ -30,7 +31,7 @@
   </head>
   <body>
     <main class="stage">
-      <!-- 현재 배경 -->
+      <!-- 1) 첫 화면 배경 -->
       <img
         id="intel"
         class="bg bg-current"
@@ -40,7 +41,7 @@
         fetchpriority="high"
       />
 
-      <!-- 로고 -->
+      <!-- 2) 첫 화면 로고 -->
       <div class="logo-wrap">
         <img
           src="asset/Webprograming_middlevideo_NAME.png"
@@ -49,28 +50,107 @@
         />
       </div>
 
-      <!-- 다음 화면(초기 숨김) -->
+      <!-- 3) 두 번째 화면 배경 (CSS 변수 --next-bg 로 설정) -->
       <div class="bg bg-next" aria-hidden="true"></div>
 
+      <!-- 4) 두 번째 화면에서 나타날 정보 이미지 (한 번만) -->
       <img
         class="battle-info"
         src="asset/Webprograming_middlevideo_text.png"
         alt="About the game text"
       />
 
-      <!-- 로고 + PRESS START -->
+      <!-- 5) 두 번째 화면에서 나타날 버튼(흰 네모 + 텍스트) -->
+      <div class="white-shape">
+        <button class="cta-preorder">PREORDER NOW</button>
+      </div>
+
+      <!-- 6) 첫 화면에서 누르는 버튼 이미지 -->
       <img
         class="press"
         src="asset/Webprograming_middlevideo_press.png"
         alt="PRESS START"
       />
 
-      <!-- 어둡게 오버레이 -->
+      <div class="white-shape facebook-box">
+        <img src="asset/facebook.png" alt="Facebook" class="facebook-icon" />
+      </div>
+
+      <div class="white-shape twitter-box">
+        <img src="asset/twitter.png" alt="twitter" class="twitter-icon" />
+      </div>
+
+      <div class="white-shape instagram-box">
+        <img src="asset/instagram.png" alt="Instagram" class="instagram-icon" />
+      </div>
+
+      <div class="facebook-box">
+        <a
+          href="https://www.facebook.com"
+          target="_blank"
+          aria-label="Facebook"
+        >
+          <img src="asset/facebook.png" alt="Facebook" class="facebook-icon" />
+        </a>
+      </div>
+
+      <!-- Twitter -->
+      <div class="twitter-box">
+        <a href="https://twitter.com" target="_blank" aria-label="Twitter">
+          <img src="asset/twitter.png" alt="Twitter" class="twitter-icon" />
+        </a>
+      </div>
+
+      <!-- Instagram -->
+      <div class="instagram-box">
+        <a
+          href="https://www.instagram.com"
+          target="_blank"
+          aria-label="Instagram"
+        >
+          <img
+            src="asset/instagram.png"
+            alt="Instagram"
+            class="instagram-icon"
+          />
+        </a>
+      </div>
+
+      <div class="top-menu">
+        <div class="menu-item">Home</div>
+        <div class="menu-item">Games</div>
+        <div class="menu-item">Platforms</div>
+        <div class="menu-item">About</div>
+        <div class="menu-item search">
+          <img src="asset/magnifier.png" alt="Search" class="search-icon" />
+        </div>
+      </div>
+
+      <div class="top-menu">...</div>
+
+      <section class="trailer" aria-label="Release trailer">
+        <h2 class="trailer-title">RELEASE TRAILER</h2>
+        <a
+          class="trailer-card"
+          href="https://www.youtube.com/watch?v=bH1lHCirCGI"
+          target="_blank"
+          rel="noopener"
+        >
+          <img
+            src="asset/trailer thumbnail.png"
+            alt="Call of Duty Trailer Thumbnail"
+            class="trailer-thumb"
+          />
+          <span class="play">▶</span>
+        </a>
+      </section>
+
+      <!-- 7) 어둡게 오버레이 -->
       <div class="fade" aria-hidden="true"></div>
     </main>
 
     <script>
-      // 로드 표시
+      // 로드 완료 표시(로고 페이드인 등)
       const intel = document.getElementById("intel");
       if (intel.complete) document.body.classList.add("loaded");
       else
@@ -78,20 +158,16 @@
           document.body.classList.add("loaded")
         );
 
-      // 클릭 → 즉시 어둡게 → 1초 뒤 다음 화면
+      // 클릭 → 즉시 어둡게 → 0.5초 뒤 다음 화면
       const stage = document.querySelector(".stage");
       const press = document.querySelector(".press");
       press.addEventListener("click", () => {
-        // ① 즉시 어둡게
-        stage.classList.add("dim-now"); // 바로 검게
-        // ② 1초 뒤에 다음 화면 보이기
+        stage.classList.add("dim-now"); // 바로 어둡게
         setTimeout(() => {
-          stage.classList.add("show-next");
-          // 전환 끝나면 UI 숨김
-          document.querySelector(".logo-wrap").style.display = "none";
-          press.style.display = "none";
-          // 어둡게는 살짝 유지했다가 자연스레 사라지게 놔둠(transition)
-          stage.classList.remove("dim-now");
+          stage.classList.add("show-next"); // 두 번째 화면 보이기
+          document.querySelector(".logo-wrap").style.display = "none"; // 첫 화면 로고 숨김
+          press.style.display = "none"; // PRESS START 숨김
+          stage.classList.remove("dim-now"); // 어둡게 해제(transition으로 자연스럽게)
         }, 500);
       });
     </script>
